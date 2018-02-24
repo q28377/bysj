@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qjk.bysj.dao.PayMapper" >
+  <resultMap id="BaseResultMap" type="com.qjk.bysj.pojo.po.Pay" >
+    <id column="pid" property="pid" jdbcType="BIGINT" />
+    <result column="sid" property="sid" jdbcType="BIGINT" />
+    <result column="basic" property="basic" jdbcType="REAL" />
+    <result column="eat" property="eat" jdbcType="REAL" />
+    <result column="house" property="house" jdbcType="REAL" />
+    <result column="other" property="other" jdbcType="REAL" />
+    <result column="bonus" property="bonus" jdbcType="REAL" />
+    <result column="penalty" property="penalty" jdbcType="REAL" />
+    <result column="scot" property="scot" jdbcType="REAL" />
+    <result column="total" property="total" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pid, sid, basic, eat, house, other, bonus, penalty, scot, total, status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qjk.bysj.pojo.po.PayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay
+    where pid = #{pid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pay
+    where pid = #{pid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qjk.bysj.pojo.po.PayExample" >
+    delete from pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qjk.bysj.pojo.po.Pay" >
+    insert into pay (pid, sid, basic, eat, 
+      house, other, bonus, penalty, 
+      scot, total, status)
+    values (#{pid,jdbcType=BIGINT}, #{sid,jdbcType=BIGINT}, #{basic,jdbcType=REAL}, #{eat,jdbcType=REAL}, 
+      #{house,jdbcType=REAL}, #{other,jdbcType=REAL}, #{bonus,jdbcType=REAL}, #{penalty,jdbcType=REAL}, 
+      #{scot,jdbcType=REAL}, #{total,jdbcType=REAL}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qjk.bysj.pojo.po.Pay" >
+    insert into pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="basic != null" >
+        basic,
+      </if>
+      <if test="eat != null" >
+        eat,
+      </if>
+      <if test="house != null" >
+        house,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+      <if test="bonus != null" >
+        bonus,
+      </if>
+      <if test="penalty != null" >
+        penalty,
+      </if>
+      <if test="scot != null" >
+        scot,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=BIGINT},
+      </if>
+      <if test="basic != null" >
+        #{basic,jdbcType=REAL},
+      </if>
+      <if test="eat != null" >
+        #{eat,jdbcType=REAL},
+      </if>
+      <if test="house != null" >
+        #{house,jdbcType=REAL},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=REAL},
+      </if>
+      <if test="bonus != null" >
+        #{bonus,jdbcType=REAL},
+      </if>
+      <if test="penalty != null" >
+        #{penalty,jdbcType=REAL},
+      </if>
+      <if test="scot != null" >
+        #{scot,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qjk.bysj.pojo.po.PayExample" resultType="java.lang.Integer" >
+    select count(*) from pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pay
+    <set >
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=BIGINT},
+      </if>
+      <if test="record.basic != null" >
+        basic = #{record.basic,jdbcType=REAL},
+      </if>
+      <if test="record.eat != null" >
+        eat = #{record.eat,jdbcType=REAL},
+      </if>
+      <if test="record.house != null" >
+        house = #{record.house,jdbcType=REAL},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=REAL},
+      </if>
+      <if test="record.bonus != null" >
+        bonus = #{record.bonus,jdbcType=REAL},
+      </if>
+      <if test="record.penalty != null" >
+        penalty = #{record.penalty,jdbcType=REAL},
+      </if>
+      <if test="record.scot != null" >
+        scot = #{record.scot,jdbcType=REAL},
+      </if>
+      <if test="record.total != null" >
+        total = #{record.total,jdbcType=REAL},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pay
+    set pid = #{record.pid,jdbcType=BIGINT},
+      sid = #{record.sid,jdbcType=BIGINT},
+      basic = #{record.basic,jdbcType=REAL},
+      eat = #{record.eat,jdbcType=REAL},
+      house = #{record.house,jdbcType=REAL},
+      other = #{record.other,jdbcType=REAL},
+      bonus = #{record.bonus,jdbcType=REAL},
+      penalty = #{record.penalty,jdbcType=REAL},
+      scot = #{record.scot,jdbcType=REAL},
+      total = #{record.total,jdbcType=REAL},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qjk.bysj.pojo.po.Pay" >
+    update pay
+    <set >
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=BIGINT},
+      </if>
+      <if test="basic != null" >
+        basic = #{basic,jdbcType=REAL},
+      </if>
+      <if test="eat != null" >
+        eat = #{eat,jdbcType=REAL},
+      </if>
+      <if test="house != null" >
+        house = #{house,jdbcType=REAL},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=REAL},
+      </if>
+      <if test="bonus != null" >
+        bonus = #{bonus,jdbcType=REAL},
+      </if>
+      <if test="penalty != null" >
+        penalty = #{penalty,jdbcType=REAL},
+      </if>
+      <if test="scot != null" >
+        scot = #{scot,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qjk.bysj.pojo.po.Pay" >
+    update pay
+    set sid = #{sid,jdbcType=BIGINT},
+      basic = #{basic,jdbcType=REAL},
+      eat = #{eat,jdbcType=REAL},
+      house = #{house,jdbcType=REAL},
+      other = #{other,jdbcType=REAL},
+      bonus = #{bonus,jdbcType=REAL},
+      penalty = #{penalty,jdbcType=REAL},
+      scot = #{scot,jdbcType=REAL},
+      total = #{total,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER}
+    where pid = #{pid,jdbcType=BIGINT}
+  </update>
+</mapper>

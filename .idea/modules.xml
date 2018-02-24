@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bysj-common/bysj-common.iml" filepath="$PROJECT_DIR$/bysj-common/bysj-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bysj-manager/bysj-manager.iml" filepath="$PROJECT_DIR$/bysj-manager/bysj-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bysj-manager/bysj-manager-dao/bysj-manager-dao.iml" filepath="$PROJECT_DIR$/bysj-manager/bysj-manager-dao/bysj-manager-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bysj-manager/bysj-manager-interface/bysj-manager-interface.iml" filepath="$PROJECT_DIR$/bysj-manager/bysj-manager-interface/bysj-manager-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bysj-manager/bysj-manager-pojo/bysj-manager-pojo.iml" filepath="$PROJECT_DIR$/bysj-manager/bysj-manager-pojo/bysj-manager-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bysj-manager/bysj-manager-service/bysj-manager-service.iml" filepath="$PROJECT_DIR$/bysj-manager/bysj-manager-service/bysj-manager-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bysj-manager/bysj-manager-web/bysj-manager-web.iml" filepath="$PROJECT_DIR$/bysj-manager/bysj-manager-web/bysj-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bysj-parent/bysj-parent.iml" filepath="$PROJECT_DIR$/bysj-parent/bysj-parent.iml" />
+    </modules>
+  </component>
+</project>
