@@ -51,7 +51,7 @@
 
     //重置
     function userAddClearForm() {
-        ajhouse.refreshTab('新增用户');
+        bysj.refreshTab('新增用户');
     }
 
     //提交表单
@@ -70,12 +70,10 @@
                 if(data > 0) {
                     $.messager.alert('温馨提示','恭喜！新增用户成功！');
                     //关闭添加页
-                    ajhouse.closeTabs('新增用户');
+                    bysj.closeTabs('新增用户');
                     //重置会受到影响的选项卡
                     if($('#tab').tabs('exists','查看用户')) {
-                        /*ajhouse.closeTabs('查看城市');
-                        ajhouse.addTabs('查看城市', 'city-list');*/
-                        ajhouse.refreshTab('查看用户');
+                        bysj.refreshTab('查看用户');
                     }
 
                 }else{

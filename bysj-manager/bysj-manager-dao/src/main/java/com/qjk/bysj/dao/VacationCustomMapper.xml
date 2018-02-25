@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qjk.bysj.dao.VacationCustomMapper" >
+    <sql id="Base_Column_List" >
+        vid, v.sid,v.begin, v.end, reason,approver,agree, v.status,
+        s.name
+    </sql>
+    <sql id="Where_Clause" >
+        <where>
+            <if test="query != null and query.name != null and query.name != '' ">
+                and s.name like '%${query.name}%'
+            </if>
+            <if test="query != null and query.id != null and query.id != '' ">
+                and v.sid like '%${query.id}%'
+            </if>
+            and v.status != 0
+        </where>
+    </sql>
+
+    <select id="countVacation" resultType="_int">
+        select count(1)
+        from vacation v
+        LEFT JOIN staff s ON v.sid = s.sid
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="listVacationByPage" resultType="com.qjk.bysj.pojo.vo.VacationCustom">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM vacation v
+        LEFT JOIN staff s ON v.sid = s.sid
+        <include refid="Where_Clause"/>
+        <choose>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null">
+                <foreach collection="order.orderParams" item="item" open="order by " close="" separator=",">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                ORDER BY vid ASC
+            </otherwise>
+        </choose>
+        LIMIT #{page.offset},#{page.rows}
+    </select>
+
+
+</mapper>

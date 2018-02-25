@@ -11,12 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @Scope("prototype")
@@ -45,6 +44,11 @@ public class UserAction {
     public String userAdd(){
         return "user-add";
     }
+    @RequestMapping("/user-editor")
+    public String userEditor(){
+        return "user-editor";
+    }
+
 
     //分页查询用户
     @ResponseBody
@@ -74,5 +78,49 @@ public class UserAction {
             e.printStackTrace();
         }
         return i;
+    }
+
+    //批量删除用户（修改用户状态为0）
+    @ResponseBody
+    @RequestMapping(value = "/user/batch", method = RequestMethod.POST)
+    public int deleteBatch(@RequestParam("ids[]")List ids){
+        int i = 0;
+        try {
+            i = userService.deleteBatch(ids);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    //点击编辑按钮，查询当前选中项相关信息，数据回显到修改页面
+    @RequestMapping("/user/update/{uid}")
+    public String getReginsById(@PathVariable("uid")Integer uid, Model model){
+
+        User user = null;
+        try {
+            user = userService.selectById(uid);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        model.addAttribute("user",user);
+        //修改页面的视图
+        return "user-editor";
+    }
+
+    //编辑的提交
+    @ResponseBody
+    @RequestMapping(value="/user/update",method = RequestMethod.POST)
+    public int updateUser(User user){
+        int i = 0;
+        try {
+            i = userService.updateUser(user);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return  i;
     }
 }

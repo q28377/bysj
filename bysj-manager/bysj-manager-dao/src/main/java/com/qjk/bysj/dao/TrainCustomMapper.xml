@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qjk.bysj.dao.TrainCustomMapper" >
+    <sql id="Base_Column_List" >
+        tid, tname, purpose, begain, end, head,number,description, status
+    </sql>
+    <sql id="Where_Clause" >
+        <where>
+            <if test="query != null and query.tname != null and query.tname != '' ">
+                and tname like '%${query.tname}%'
+            </if>
+            and status != 0
+        </where>
+    </sql>
+
+    <select id="countTrain" resultType="_int">
+        select count(1)
+        from train
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="listTrainByPage" resultType="com.qjk.bysj.pojo.po.Train">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM train
+        <include refid="Where_Clause"/>
+        <choose>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null">
+                <foreach collection="order.orderParams" item="item" open="order by " close="" separator=",">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                ORDER BY tid ASC
+            </otherwise>
+        </choose>
+        LIMIT #{page.offset},#{page.rows}
+    </select>
+
+
+</mapper>

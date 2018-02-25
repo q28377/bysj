@@ -59,12 +59,68 @@ public class UserServiceImpl implements UserService {
 
             UserExample userExample=new UserExample();
             UserExample.Criteria criteria=userExample.createCriteria();
-            criteria.andUsernameEqualTo(user.getUsername());
+            criteria.andUsernameEqualTo(user.getUsername());//用户名重复
+            criteria.andStatusEqualTo(1);//用户未被删除
 
             List<User> list = userMapper.selectByExample(userExample);
+            //不能有重复的未删除的用户名
            if(list.size()==0){
                 i = userMapper.insert(user);
             }
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    @Override
+    public int deleteBatch(List ids) {
+        int i=0;
+        try {
+            for(int j=0;j<ids.size();j++) {
+                //System.out.println(ids.get(i));
+                User user = null;
+                int id = Integer.parseInt((String) ids.get(i));
+                user = userMapper.selectByPrimaryKey(id);
+                user.setStatus(0);
+
+                //创建更新模板
+                UserExample example = new UserExample();
+                UserExample.Criteria criteria = example.createCriteria();
+                criteria.andUidEqualTo(id);
+                //执行
+                i += userMapper.updateByExample(user, example);
+            }
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    @Override
+    public User selectById(int uid) {
+        User user = null;
+        try {
+            user = userMapper.selectByPrimaryKey((Integer) uid);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public int updateUser(User user) {
+        int i = 0 ;
+        try {
+            //创建更新模板
+            UserExample example = new UserExample();
+            UserExample.Criteria criteria = example.createCriteria();
+            criteria.andUidEqualTo(user.getUid());
+            //执行
+            i = userMapper.updateByExample(user,example);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();

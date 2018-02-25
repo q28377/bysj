@@ -22,23 +22,23 @@
     }
 
     function userListAdd() {
-        ajhouse.addTabs('新增用户', 'user-add');
+        bysj.addTabs('新增用户', 'user-add');
     }
 
     function userListEdit() {
         //console.log('edit');
-        ajhouse.closeTabs('编辑区域');
+        bysj.closeTabs('编辑用户');
         var selections = $('#user_dg2').datagrid('getSelections');
         if (selections.length != 1) {
             //客户没有选择记录
-            $.messager.alert('提示', '请选中一条记录！');
+            $.messager.alert('提示', '只能选中一条记录！');
             return;
         }
         //至少选中了一条记录
         $.messager.confirm('确认', '您确认想要编辑记录吗？', function (r) {
             if (r) {
-                var id = selections[0].id;
-                ajhouse.addTabs("编辑区域","users/"+id);
+                var uid = selections[0].uid;
+                bysj.addTabs("编辑用户","user/update/"+uid);
                 //action方法
             }
         });
@@ -61,7 +61,8 @@
                 var ids = [];
                 //遍历选中的记录，将记录的id存放到js数组中
                 for (var i = 0; i < selections.length; i++) {
-                    ids.push(selections[i].id);
+                    //alert(selections[i].uid);
+                    ids.push(selections[i].uid);
                 }
                 //把ids异步提交到后台
                 $.post(

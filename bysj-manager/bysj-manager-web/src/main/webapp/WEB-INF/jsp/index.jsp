@@ -42,65 +42,39 @@
                 </li>
             </ul>
         </div>
-        <div title="房源管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
+        <div title="人事管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'house-add'}">发布房源</li>
-                <li data-options="attributes:{'href':'house-list'}">查看房源</li>
-                <li data-options="attributes:{'href':'house-param-add'}">房屋规格参数管理</li>
+                <li>
+                    <span>部门管理</span>
+                    <ul>
+                        <li data-options="attributes:{'href':'department-list'}">查询部门</li>
+                        <li data-options="attributes:{'href':'department-add'}">新增部门</li>
+                    </ul>
+                </li>
+                <li>
+                    <span>员工管理</span>
+                    <ul>
+                        <li data-options="attributes:{'href':'staff-list'}">查询员工</li>
+                        <li data-options="attributes:{'href':'staff-add'}">新增员工</li>
+                    </ul>
+                </li>
             </ul>
         </div>
-        <div title="新闻管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
+        <div title="薪资管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'sysnews-add'}">新增系统新闻</li>
-                <li data-options="attributes:{'href':'sysnews-list'}">查看系统新闻</li>
-            </ul>
-        </div>
-        <div title="回答管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
-            <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'question-list'}">查看提问</li>
-            </ul>
-        </div>
-        <div title="帮助中心管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
 
-            <ul class="easyui-tree">
-                <li>
-                    <span>帮助菜单管理</span>
-                    <ul>
-                        <li data-options="attributes:{'href':'menu-add'}">新增菜单</li>
-                        <li data-options="attributes:{'href':'menu-list'}">查看菜单</li>
-                    </ul>
-                </li>
-                <li>
-                    <span>帮助中心文档管理</span>
-                    <ul>
-                        <li data-options="attributes:{'href':'doc-add'}">新增文档</li>
-                        <li data-options="attributes:{'href':'doc-list'}">查看文档</li>
-                    </ul>
-                </li>
             </ul>
         </div>
-        <div title="城市区域管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
-
+        <div title="考勤管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li>
-                    <span>城市管理</span>
-                    <ul>
-                        <li data-options="attributes:{'href':'city-add'}">新增城市</li>
-                        <li data-options="attributes:{'href':'city-list'}">查看城市</li>
-                    </ul>
-                </li>
-                <li>
-                    <span>区域管理</span>
-                    <ul>
-                        <li data-options="attributes:{'href':'regin-add'}">新增区域</li>
-                        <li data-options="attributes:{'href':'regin-list'}">查看区域</li>
-                    </ul>
-                </li>
+                <li data-options="attributes:{'href':'vacation-list'}">查询请假记录</li>
+                <li data-options="attributes:{'href':'vacation-add'}">新增请假记录</li>
             </ul>
         </div>
-        <div title="索引库管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
+        <div title="培训管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'solr-add'}">一键导入索引库</li>
+                <li data-options="attributes:{'href':'train-list'}">查询培训记录</li>
+                <li data-options="attributes:{'href':'train-add'}">新增培训记录</li>
             </ul>
         </div>
     </div>
@@ -137,7 +111,7 @@
 
 <!-- 自定义js -->
 <script>
-    ajhouse.registerMenuEvent();
+    bysj.registerMenuEvent();
 </script>
 
 <script>
