@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -25,10 +26,70 @@ public class UserAction {
     @Autowired
     private UserService userService;
 
-    //访问首页
-    @RequestMapping("/")    //根据配置文件，解析访问到WEB-INF/jsp下的index.jsp
-    public String index(){
-        return "index";
+    //访问登录页
+    @RequestMapping("/")    //根据配置文件，解析访问到WEB-INF/jsp下的XXX.jsp
+    public String toLogin(){
+        return "login";
+    }
+
+    //进行登录
+    @ResponseBody
+    @RequestMapping("/login")
+    public int login(User user,HttpSession session){
+        int mess = 0;
+        try{
+            if (user!=null){
+                if (user.getUsername().equals("")){
+                    mess=0;//账户名不为空
+                }else if (user.getPassword().equals("")){
+                    mess=1;//密码不能为空
+                }else{
+                    User u = null;
+                    try {
+                        u = userService.findByUsername(user);
+                        if (u==null){
+                            mess = 2;//账户名不存在
+                        }/*else if (!u.getIsUse()){
+                            mess = 3;//账户不可用
+                        }*/else if (!u.getPassword().equals(user.getPassword())){
+                            mess = 4;//账户名与密码不一致
+                        }else if(u.getRole()==0){
+                            mess = 5;//普通用户登录成功
+                            session.setAttribute("u",u);
+                        }else{
+                            mess = 6;//管理员登录成功
+                            session.setAttribute("u",u);
+                        }
+                    }catch (Exception e){
+                        logger.error(e.getMessage(), e);
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }catch (Exception e){
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return mess;
+    }
+
+    //进行注销
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        //清除session
+        session.removeAttribute("u");
+        return "login";
+    }
+    //访问index.jsp
+    @RequestMapping("/index")
+    public String index(HttpSession session){
+        User u = (User)session.getAttribute("u");
+        if(u!=null){
+            return "index";
+        }
+        else{
+            return "login";
+        }
     }
 
     //访问user-list

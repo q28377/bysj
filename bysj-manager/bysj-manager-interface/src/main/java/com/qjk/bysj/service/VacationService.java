@@ -13,7 +13,6 @@ public interface VacationService {
     Result<VacationCustom> listVacationByPage(Page page, Order order, VacationQuery query);
     int deleteBatch(List ids);
     int saveVacation(VacationCustom vacation);
-    /*
     Vacation selectById(long tid);
-    int updateVacation(VacationCustom vacation)*/
+    int updateVacation(VacationCustom vacation);
 }

@@ -12,10 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,7 +42,7 @@ public class VacationAction {
     }
 
 
-    //分页查询培训信息
+    //分页查询请假信息
     @ResponseBody
     @RequestMapping(value = "/vacation/query", method = RequestMethod.POST)
     public Result<VacationCustom> listVacationByPage(Page page, Order order, VacationQuery query){
@@ -58,7 +56,7 @@ public class VacationAction {
         return list;
     }
 
-    //批量删除培训信息（修改培训状态为0）
+    //批量删除请假信息（修改请假状态为0）
     @ResponseBody
     @RequestMapping(value = "/vacation/batch", method = RequestMethod.POST)
     public int deleteBatch(@RequestParam("ids[]")List ids){
@@ -72,7 +70,7 @@ public class VacationAction {
         return i;
     }
 
-    //新增培训信息
+    //新增请假信息
     @ResponseBody
     @RequestMapping(value = "/vacation/add", method = RequestMethod.POST)
     public int saveVacation(VacationCustom vacation){
@@ -105,13 +103,13 @@ public class VacationAction {
         }
         return i;
     }
-/*
+
     //点击编辑按钮，查询当前选中项相关信息，数据回显到修改页面
-    @RequestMapping("/vacation/update/{tid}")
-    public String getReginsById(@PathVariable("tid")Integer tid, Model model){
+    @RequestMapping("/vacation/update/{vid}")
+    public String getReginsById(@PathVariable("vid")Long vid, Model model){
         Vacation vacation = null;
         try {
-            vacation = vacationService.selectById((long)tid);
+            vacation = vacationService.selectById(vid);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();
@@ -125,7 +123,7 @@ public class VacationAction {
     @ResponseBody
     @RequestMapping(value="/vacation/update",method = RequestMethod.POST)
     public int updateVacation(VacationCustom vacation){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date1 = null;
         Date date2 = null;
         if(vacation.getStart()!=null&&vacation.getStart()!=""){
@@ -134,7 +132,7 @@ public class VacationAction {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            vacation.setBegain(date1);
+            vacation.setBegin(date1);
         }
         if(vacation.getFinish()!=null&&vacation.getFinish()!=""){
             try {
@@ -153,5 +151,5 @@ public class VacationAction {
             e.printStackTrace();
         }
         return  i;
-    }*/
+    }
 }

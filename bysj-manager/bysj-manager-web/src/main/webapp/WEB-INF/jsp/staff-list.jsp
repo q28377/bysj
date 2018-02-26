@@ -127,8 +127,7 @@
             {field: 'nativeplace', title: '籍贯', width: 100, sortable: false},
             {field: 'address', title: '住址', width: 100, sortable: false},
             {field: 'position', title: '职称', width: 100, sortable: false},
-            {field: 'pay', title: '工资/元', width: 100, sortable: false},
-            {field: 'begin', title: '手机号码', width: 100, sortable: false},
+            /*{field: 'pay', title: '工资/元', width: 100, sortable: false},*/
             {field: 'begin', title: '入职日期', width: 100 , sortable: true,formatter: function (value, row, index) {
                 return moment(value).format('LL');
             }},

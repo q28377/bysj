@@ -15,4 +15,5 @@ public interface UserService {
     int deleteBatch(List ids);
     User selectById(int uid);
     int updateUser(User user);
+    User findByUsername(User user);
 }

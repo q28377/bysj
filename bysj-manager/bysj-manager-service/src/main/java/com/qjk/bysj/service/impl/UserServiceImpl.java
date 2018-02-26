@@ -127,4 +127,23 @@ public class UserServiceImpl implements UserService {
         }
         return i;
     }
+
+    @Override
+    public User findByUsername(User user) {
+        User u = null;
+        try {
+            UserExample example= new UserExample();
+            UserExample.Criteria criteria = example.createCriteria();
+            criteria.andUsernameEqualTo(user.getUsername());
+            criteria.andStatusEqualTo(1);
+
+            u = userMapper.selectByExample(example).get(0);
+
+        }catch (Exception e){
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+
+        return u;
+    }
 }

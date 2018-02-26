@@ -7,7 +7,7 @@
                 <td class="label">员工编号：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="sid" name="sid"
-                           data-options="required:false" style="width:200px">
+                           data-options="required:true" style="width:200px">
                 </td>
             </tr>
             <tr>
@@ -16,13 +16,14 @@
                     <input type="text" id="start" name="start"
                            onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',
                             minDate:'1990-01-01 00:00:00',maxDate:'2100-01-01 00:00:00'})"
-                           style="width:200px"/>
+                           style="width:200px" />
+
                 </td>
             </tr>
             <tr>
                 <td class="label">结束时间：</td>
                 <td>
-                    <input type="text" id="finish" name="finish"
+                    <input type="text" id="finish" name="finish" data-options="required:true"
                            onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',
                             minDate:'1990-01-01 00:00:00',maxDate:'2100-01-01 00:00:00'})"
                            style="width:200px"/>
@@ -31,7 +32,7 @@
             <tr>
                 <td class="label">请假原因：</td>
                 <td>
-                    <textarea  id="reason" name="reason"
+                    <textarea  id="reason" name="reason" data-options="required:true"
                                style="width:200px"/>
                 </td>
             </tr>
@@ -71,47 +72,6 @@
 </div>
 <script src="js/My97DatePicker/WdatePicker.js"></script>
 <script>
-    //手机号码与邮箱的校验
-    var flag1=true;
-    var flag2=true;
-    function telCheck(){
-        var rule="^1[3|4|5|7|8][0-9]\\d{4,8}$";
-        if($("#telephone").val()!=""){
-            //alert('校验');
-            if(!$("#telephone").val().match(rule)){
-                $("#tel").html("手机号码格式不正确!");
-                flag1=false;
-            }else{
-                $("#tel").html("");
-                flag1=true;
-            }
-        }else {
-            $("#tel").html("");
-            flag1=true;
-        }
-    }
-    function emailCheck(){
-        var rule="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
-        if($("#email").val()!=""){
-            //alert('校验');
-            if(!$("#email").val().match(rule)){
-                $("#em").html("电子邮箱格式不正确!");
-                flag2=false;
-            }else{
-                $("#em").html("");
-                flag2=true;
-            }
-        }else{
-            $("#em").html("");
-            flag2=true;
-        }
-    }
-
-    //加载所属部门的下拉框
-    $('#did').combotree({
-        url: 'department/all',
-        required: true
-    });
 
     //重置
     function vacationAddClearForm() {
@@ -120,9 +80,6 @@
 
     //提交表单
     function vacationAddSubmitForm(){
-        if(!(flag1&&flag2)){
-            $.messager.alert('警告','请输入正确格式的手机号码和电子邮箱！');
-        } else{
             $('#vacationAddForm').form('submit',{
                 //提交表单到item进行处理
                 url: 'vacation/add',
@@ -142,10 +99,10 @@
                             bysj.refreshTab('查询请假记录');
                         }
                     }else{
-                        $.messager.alert('警告','发生未知错误，新增请假记录失败！');
+                        $.messager.alert('警告','保存失败！请输入为数字的员工编号');
                     }
                 }
             });
-        }
+
     }
 </script>

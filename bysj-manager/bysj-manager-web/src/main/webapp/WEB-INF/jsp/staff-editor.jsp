@@ -8,7 +8,7 @@
             <tr>
                 <td class="label">员工编号：</td>
                 <td>
-                    <input id="sid" name="sid" data-options="required:true" style="width:200px"
+                    <input class="easyui-textbox" id="sid" name="sid" data-options="required:true" style="width:200px"
                            value="${staff.sid}" readonly="readonly">
                 </td>
             </tr>
@@ -101,14 +101,14 @@
                            value="${staff.position}">
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td class="label">总工资/元：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="pay" name="pay"
                            data-options="required:false" style="width:200px"
                            value="${staff.pay}">
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td class="label">入职日期：</td>
                 <td>

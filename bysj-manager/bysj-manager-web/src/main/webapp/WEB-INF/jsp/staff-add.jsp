@@ -83,13 +83,13 @@
                            data-options="required:false" style="width:200px">
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td class="label">总工资/元：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="pay" name="pay"
                            data-options="required:false" style="width:200px">
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td class="label">入职日期：</td>
                 <td>

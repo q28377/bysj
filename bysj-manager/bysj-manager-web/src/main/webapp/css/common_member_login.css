@@ -225,7 +225,7 @@ a.sug_btn{ width:38px; height:108px; display:block; position:absolute; right:10p
 /*simple-header*/
 #footer {width:970px;margin:0 auto;}
 .simple-header{position:relative;border-bottom:4px solid #47A741;margin:15px 0 0;}
-.simple-header #header-box{padding: 0 0 15px 10px;width: 960px;height:90px}
+.simple-header #header-box{padding: 0 0 15px 10px;width: 1000px;height:90px}
 .simple-header .logo{width:700px;height:90px;background:url(../images/agency_logo.png) no-repeat 0 0;position:relative;float: left;}
 .simple-header .logo a{display:block;font-size:12px;position:absolute;overflow:hidden;text-indent:-9999px;}
 .simple-header .logo .ajk-logo{width:110px;height:90px;top:3px;left:0;}

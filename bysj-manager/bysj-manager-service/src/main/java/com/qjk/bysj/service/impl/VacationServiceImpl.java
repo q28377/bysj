@@ -45,6 +45,17 @@ public class VacationServiceImpl implements VacationService{
             result.setTotal(total);
             //3 对rows进行设值(指定页码显示记录集合)
             List<VacationCustom> list = vacationCustomMapper.listVacationByPage(map);
+
+            /*//员工编号没有对应员工表员工
+            List<VacationCustom> list2=null;
+            for(int n=0;n<list.size();n++){
+                VacationCustom v = list.get(n);
+                if(v.getName()==null){
+                    v.setName("（该员工编号无对应员工！）");
+                }
+                list2.add(n,v);
+            }*/
+
             result.setRows(list);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -88,7 +99,7 @@ public class VacationServiceImpl implements VacationService{
         }
         return i;
     }
-/*
+
     @Override
     public Vacation selectById(long tid) {
         Vacation vacation = null;
@@ -108,7 +119,7 @@ public class VacationServiceImpl implements VacationService{
             //创建更新模板
             VacationExample example = new VacationExample();
             VacationExample.Criteria criteria = example.createCriteria();
-            criteria.andTidEqualTo(vacation.getTid());
+            criteria.andVidEqualTo(vacation.getVid());
             //执行
             i = vacationMapper.updateByExample(vacation,example);
         }catch (Exception e){
@@ -116,5 +127,5 @@ public class VacationServiceImpl implements VacationService{
             e.printStackTrace();
         }
         return i;
-    }*/
+    }
 }

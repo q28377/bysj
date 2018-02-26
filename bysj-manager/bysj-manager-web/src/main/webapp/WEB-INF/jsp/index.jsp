@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -13,26 +14,33 @@
 <body class="easyui-layout">
 <div style="height:120px;padding-left:10px;" data-options="region:'north'" >
     <div style="border-bottom: solid 5px cyan;">
-        <img src="images/agency_logo.png" style="width: 400px;height: 50px;margin-left: 100px;">
-        <a href="#" onclick="javaScript:checkLogout()"><img src="images/sys-logout.png" style="float: right;margin-right: 50px;margin-top: 10px;"></a>
+        <img src="images/agency_logo.png" style="width: 400px;height: 60px;margin-left: 50px;">
+
+        <a href="#" onclick="javaScript:checkLogout()">
+            <img src="images/sys-logout.png" style="float: right;margin-right: 20px;margin-top: 10px;">
+        </a>
+        <span style="float: right;margin-right: 100px;margin-top: 20px;">欢迎您！${u.username}</span>
     </div>
     <div>
         <p id="datetime" style="margin-right: 50px;font-weight: 600;font-size: large; float: right" ></p>
     </div>
 </div>
 <div data-options="region:'south'" style="padding:5px;background-color: #4cae4c;">
-    系统版本：V2.0
+    系统版本：V1.0
 </div>
 <div data-options="region:'west'" style="width:200px;">
     <div id="menu" class="easyui-accordion" style="opacity: 0.9">
         <div title="用户管理" data-options="selected:true,iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
+                <c:if test="${u.role == 0}">
                 <li>
                     <span>普通用户管理</span>
                     <ul>
                         <li data-options="attributes:{'href':'user-list'}">查询用户</li>
                     </ul>
                 </li>
+                </c:if>
+                <c:if test="${u.role == 1}">
                 <li>
                     <span>管理员管理</span>
                     <ul>
@@ -40,6 +48,7 @@
                         <li data-options="attributes:{'href':'user-add'}">新增用户</li>
                     </ul>
                 </li>
+                </c:if>
             </ul>
         </div>
         <div title="人事管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
@@ -62,7 +71,8 @@
         </div>
         <div title="薪资管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-
+                <li data-options="attributes:{'href':'pay-list'}">查询工资记录</li>
+                <li data-options="attributes:{'href':'pay-add'}">新增工资记录</li>
             </ul>
         </div>
         <div title="考勤管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">

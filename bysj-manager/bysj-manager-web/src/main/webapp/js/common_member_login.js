@@ -180,7 +180,7 @@ APF.Utils = {
             var passWord = $.trim(passWordObj.val());
             var errorText = "";
             var check = true;
-            if(!userName || userName == undefined || (userName == "输入手机号或用户名")) {
+            if(!userName || userName == undefined || (userName == "输入用户名")) {
                 init.inputChangeCssEvent(userNameObj,"input_border_error","add");
                 errorText = "用户名不能为空!";
                 check = false;
@@ -243,13 +243,13 @@ APF.Utils = {
                 init.inputChangeCssEvent($(this),"input_border_edit","add");//增加获得焦点样式
                 init.inputChangeCssEvent($(this),"input_border_error","remove");//移除获得焦点样式
                 if ($(this).attr("id") && $(this).attr("id") == "p_username") {//二手房用户名输入框
-                    init.inputFocusEvent($(this),"输入手机号或用户名");
+                    init.inputFocusEvent($(this),"输入用户名");
                 }
             });
             $(this).bind("blur",function() {
                 init.inputChangeCssEvent($(this),"input_border_edit","remove");
                 if ($(this).attr("id") && $(this).attr("id") == "p_username") {//二手房用户名输入框
-                    init.inputBlurEvent($(this),"输入手机号或用户名");
+                    init.inputBlurEvent($(this),"输入用户名");
                 }
             });
         });
