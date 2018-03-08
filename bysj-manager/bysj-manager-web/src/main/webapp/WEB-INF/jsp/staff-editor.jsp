@@ -162,7 +162,7 @@
         <!--<input name="paramData" id="paramData" style="display:none;">-->
     </form>
 </div>
-
+<script src="js/My97DatePicker/WdatePicker.js"></script>
 <script>
     //选中性别
     var sel = document.getElementById('gender');

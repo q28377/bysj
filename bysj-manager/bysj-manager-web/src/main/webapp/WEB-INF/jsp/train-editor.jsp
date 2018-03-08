@@ -83,7 +83,7 @@
         <!--<input name="paramData" id="paramData" style="display:none;">-->
     </form>
 </div>
-
+<script src="js/My97DatePicker/WdatePicker.js"></script>
 <script>
 
     //重置
