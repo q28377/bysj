@@ -99,10 +99,10 @@
             <artifactId>json</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.baidu</groupId>
             <artifactId>ueditor</artifactId>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 

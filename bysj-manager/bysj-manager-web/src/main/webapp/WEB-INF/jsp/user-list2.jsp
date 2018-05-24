@@ -103,8 +103,8 @@
             {field: 'ck', checkbox: true},
             {field: 'uid', title: '编号', width: 100, sortable: true},
             {field: 'username', title: '用户名', width: 100, sortable: true},
-            {field: 'password', title: '密码', width: 100, sortable: false},
-            {field: 'createTime', title: '创建日期', width: 100 , sortable: true,formatter: function (value, row, index) {
+            //{field: 'password', title: '密码', width: 100, sortable: false},
+            {field: 'createtime', title: '创建日期', width: 100 , sortable: true,formatter: function (value, row, index) {
                 return moment(value).format('LL');
             }},
             {field: 'role', title: '权限', width: 100 , sortable: true,formatter: function (value, row, index) {

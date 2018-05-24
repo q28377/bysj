@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import util.MD5Util;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -45,13 +46,17 @@ public class UserAction {
                     mess=1;//密码不能为空
                 }else{
                     User u = null;
+                    MD5Util md5 = new MD5Util();
                     try {
                         u = userService.findByUsername(user);
                         if (u==null){
                             mess = 2;//账户名不存在
-                        }/*else if (!u.getIsUse()){
+                        }else if (u.getStatus()==0){
                             mess = 3;//账户不可用
-                        }*/else if (!u.getPassword().equals(user.getPassword())){
+                        }
+                        //else if (!u.getPassword().equals(user.getPassword())){
+                        //用MD5加密后，再去数据库中比较密码
+                        else if (!u.getPassword().equals(md5.string2MD5(user.getPassword()))){
                             mess = 4;//账户名与密码不一致
                         }else if(u.getRole()==0){
                             mess = 5;//普通用户登录成功

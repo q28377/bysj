@@ -20,7 +20,9 @@
             <tr>
                 <td class="label">密码：</td>
                 <td>
-                    <input class="easyui-textbox" type="text" id="password" name="password"
+                    <%--<input class="easyui-textbox" type="text" id="password" name="password"
+                           data-options="required:true" style="width:200px" value="${user.password}">--%>
+                    <input class="easyui-textbox" type="password" id="password" name="password"
                            data-options="required:true" style="width:200px" value="${user.password}">
                 </td>
                 <td>
@@ -55,14 +57,7 @@
 </div>
 <script src="js/My97DatePicker/WdatePicker.js"></script>
 <script>
-    //加载下拉框
-    /*$('#treeNode').combotree({
-        url: 'citiesCats',
-        required: true,
-        onLoadSuccess:function () {
-            $('#treeNode').combotree('setValue',${user.uid});
-        }
-    });*/
+
     //选中权限
     var sel = document.getElementById('role');
     for(var i=0;i<sel.options.length;i++){

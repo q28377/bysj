@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import util.MD5Util;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +58,9 @@ public class UserServiceImpl implements UserService {
     public int saveUser(User user) {
         int i = 0;
         try{
+            //MD5加密
+            MD5Util md5 = new MD5Util();
+            user.setPassword(md5.string2MD5(user.getPassword()));
 
             UserExample userExample=new UserExample();
             UserExample.Criteria criteria=userExample.createCriteria();
@@ -115,6 +120,13 @@ public class UserServiceImpl implements UserService {
     public int updateUser(User user) {
         int i = 0 ;
         try {
+            User u0 = userMapper.selectByPrimaryKey((Integer) user.getUid());
+            //如果密码与原来不同，用MD5加密
+            if(!user.getPassword().equals(u0.getPassword())) {
+                MD5Util md5 = new MD5Util();
+                user.setPassword(md5.string2MD5(user.getPassword()));
+            }
+
             //创建更新模板
             UserExample example = new UserExample();
             UserExample.Criteria criteria = example.createCriteria();

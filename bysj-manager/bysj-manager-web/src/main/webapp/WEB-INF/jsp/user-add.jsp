@@ -14,7 +14,7 @@
             <tr>
                 <td class="label">密码：</td>
                 <td>
-                    <input class="easyui-textbox" type="text" id="password" name="password"
+                    <input class="easyui-textbox" type="password" id="password" name="password"
                            data-options="required:true" style="width:200px">
                 </td>
             <tr>
